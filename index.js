@@ -28,3 +28,12 @@ app.get('/api/hello', function (req, res) {
 var listener = app.listen(process.env.PORT || 3000, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+//your request api/whoami should return your ip address your preferred language and your software on ipaddress, languate, software keys
+let responseObject = {}
+app.get('/api/whoami', (req, res) => {
+  responseObject.ipaddress = req.ip;
+  responseObject.language = req.headers['accept-language'];
+  responseObject.software = req.headers['user-agent'];
+  
+  res.json(responseObject);
+});
